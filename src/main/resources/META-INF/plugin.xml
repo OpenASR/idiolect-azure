@@ -1,0 +1,24 @@
+<idea-plugin>
+    <id>org.openasr.idiolect.azure</id>
+    <name>idiolect-azure</name>
+    <vendor email="bre@ndan.co" url="https://github.com/OpenASR/idiolect">OpenASR</vendor>
+
+    <description>
+        <![CDATA[Allows <a href="https://github.com/OpenASR/idiolect">idiolect</a> to use Azure speech to text for improved results.]]>
+    </description>
+
+    <depends>com.intellij.modules.lang</depends>
+    <depends>org.openasr.idiolect</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService serviceImplementation="org.openasr.idiolect.asr.azure.AzureConfig"/>
+        <applicationConfigurable groupId="tools" displayName="Azure"
+                                 id="preferences.AzureConfiguration"
+                                 parentId="preferences.IdiolectConfiguration"
+                                 instance="org.openasr.idiolect.asr.azure.AzureConfigurable" dynamic="true"/>
+    </extensions>
+
+    <extensions defaultExtensionNs="org.openasr.idiolect">
+        <asrProvider implementation="org.openasr.idiolect.asr.azure.AzureAsr"/>
+    </extensions>
+</idea-plugin>
