@@ -3,9 +3,9 @@ import org.jetbrains.changelog.Changelog.OutputType.HTML
 fun properties(key: String) = providers.gradleProperty(key)
 
 plugins {
-  kotlin("jvm") version "1.8.0"
-  id("org.jetbrains.intellij") version "1.11.0"
-  id("com.github.ben-manes.versions") version "0.44.0"
+  kotlin("jvm") version "1.8.20"
+  id("org.jetbrains.intellij") version "1.13.3"
+  id("com.github.ben-manes.versions") version "0.46.0"
   id("org.jetbrains.changelog") version "2.0.0"
 }
 
@@ -20,12 +20,21 @@ intellij {
   version = "2023.1" // The version of the IntelliJ Platform IDE that will be used to build the plugin
   pluginName = "idiolect-azure"
   updateSinceUntilBuild = false
-  plugins = listOf("org.openasr.idiolect:1.4.8","java")
+  plugins = listOf("org.openasr.idiolect:1.4.8")
+//  plugins = listOf("org.openasr.idiolect:1.4.9-SNAPSHOT@beta")
 }
 
 tasks {
   val jvmTarget = "17"
   compileKotlin { kotlinOptions.jvmTarget = jvmTarget }
+  withType<JavaCompile> {
+    sourceCompatibility = "17"
+    targetCompatibility = "17"
+  }
+  withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions.jvmTarget = "17"
+  }
+
 
   changelog {
     groups = listOf("Added", "Changed", "Removed", "Fixed")
@@ -33,7 +42,7 @@ tasks {
 
   patchPluginXml {
     version = "${project.version}"
-    sinceBuild = "222.*"
+    sinceBuild = "222"
 //    untilBuild = "223.*")
 
     changeNotes = provider {
@@ -84,7 +93,8 @@ tasks {
 repositories {
   mavenLocal()
   mavenCentral()
-  maven("https://azureai.azureedge.net/maven/")
+  maven("https://plugins.jetbrains.com/maven")
+  maven("https://azureai.azureedge.net/maven")
 }
 
 dependencies {

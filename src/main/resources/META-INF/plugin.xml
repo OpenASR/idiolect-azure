@@ -4,7 +4,10 @@
     <vendor email="bre@ndan.co" url="https://github.com/OpenASR/idiolect">OpenASR</vendor>
 
     <description>
-        <![CDATA[Allows <a href="https://github.com/OpenASR/idiolect">idiolect</a> to use Azure speech to text for improved results.]]>
+        <![CDATA[
+        <p>Allows <a href="https://github.com/OpenASR/idiolect">idiolect</a> to use Azure speech to text for improved results.</p>
+        <p>Azure provide up to <b>5 hours/month</b> for free and then charge $1.185 or <b>$1.481 per hour</b></p>
+        ]]>
     </description>
 
     <depends>com.intellij.modules.lang</depends>
